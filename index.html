@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создать календарь</title>
+    <link rel="stylesheet" href="./style.css"> <!-- Убедитесь, что путь правильный -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Добро пожаловать!</h1>
+        <button id="create-calendar-btn">Создать календарь</button>
+        <button id="connect-calendar-btn">Подключить календарь</button>
+        <button id ="open-notes-btn">Заметки</button>
+        <div class="button-container">
+            <div id="selected-calendar-id" style="margin-bottom: 10px; font-weight: bold;">
+                Выбранный calendar_id: <span id="calendar-id-text">Не выбран</span>
+            </div>
+            <select id="calendar-select">
+                <!-- Опции будут добавлены динамически -->
+            </select>
+            <button id="open-calendar-btn">Открыть календарь</button>
+        </div>
+
+        <!-- Форма для создания календаря -->
+        <div id="create-calendar-form" class="form-hidden">
+            <input type="text" id="calendar-name" placeholder="Имя календаря" required>
+            <button id="submit-calendar-btn">Создать</button>
+        </div>
+        <div id="connect-calendar-form" class="form-hidden">
+            <input type="text" id="connect-calendar-name" placeholder="ID Календаря" required>
+            <button id="connect-submit-calendar-btn">Подключиться</button>
+        </div>
+
+        <!-- Блок с надписью "Основной календарь" и рамкой -->
+        <div class="main-calendar-container">
+            <h2>Основной календарь</h2>
+            <div class="calendar-select-container">
+                <select id="main-calendar-select">
+                    <option value="" disabled selected>Выберите календарь</option>
+                </select>
+                <button id="save-main-calendar-btn">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+    <script type="module" src="script_bt_basic_calendar.js"></script> <!-- Подключаем новый скрипт -->
+    <script type="module" src="script_bt_create_calendar.js"></script>
+    <script type="module" src="script_bt_connect_calendar.js"></script>
+    <script type="module" src="script_bt_notes.js"></script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбрать услугу</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем стили -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Выберите услугу</h1>
+        <form id="service-form" class="service-form">
+            <!-- Список услуг будет загружен динамически -->
+            <div id="services-list"></div>
+            <button type="submit" class="tg-button">Далее</button>
+        </form>
+    </div>
+
+    <script type="module" src="choose_service.js"></script> <!-- Подключаем скрипт -->
+</body>
+</html>

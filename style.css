@@ -1,0 +1,162 @@
+/* style.css */
+
+/* Общие стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для кнопок "Создать календарь", "Подключить календарь" и "Открыть заметки" */
+#create-calendar-btn,
+#connect-calendar-btn,
+#open-notes-btn {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0088cc; /* Голубой цвет, как в Telegram */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Закругленные углы */
+    cursor: pointer;
+    width: 100%;
+    margin-bottom: 10px;
+    transition: background-color 0.3s;
+}
+
+#create-calendar-btn:hover,
+#connect-calendar-btn:hover,
+#open-notes-btn:hover {
+    background-color: #0077b3; /* Темно-голубой при наведении */
+}
+
+/* Стили для блока с выпадающим списком и кнопкой "Открыть календарь" */
+.button-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd; /* Светлая рамка */
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.button-container button {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0088cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.button-container button:hover {
+    background-color: #0077b3;
+}
+
+/* Стили для кнопки "Открыть календарь" */
+#open-calendar-btn {
+    background-color: #0088cc;
+    color: white;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+#open-calendar-btn:hover {
+    background-color: #0077b3;
+}
+
+/* Скрытая форма */
+.form-hidden {
+    display: none;
+}
+
+/* Стили для контейнера календаря */
+.calendar-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.calendar-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Стили для блока "Основной календарь" */
+.main-calendar-container {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.main-calendar-container h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+/* Стили для выпадающего списка */
+.calendar-select-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#calendar-select,
+#main-calendar-select {
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 100%;
+    background-color: #fff;
+    color: #333;
+}
+
+#calendar-select option,
+#main-calendar-select option {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Стили для кнопки "Сохранить основной календарь" */
+#save-main-calendar-btn {
+    padding: 10px;
+    font-size: 16px;
+    background-color: #0088cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+#save-main-calendar-btn:hover {
+    background-color: #0077b3;
+}

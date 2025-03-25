@@ -1,0 +1,204 @@
+/* Стили для выезжающего окна */
+.slide-out-panel {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Начальное положение за пределами экрана */
+    width: 80%; /* Ширина окна */
+    height: 100%;
+    background-color: white;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.slide-out-panel.open {
+    right: 0; /* Окно выезжает на экран */
+}
+
+.close-panel {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Оверлей для затемнения фона */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: none;
+}
+
+.overlay.active {
+    display: block;
+}
+
+/* Общие стили */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #0088cc;
+}
+
+/* Стили для заметок */
+.note {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+    cursor: pointer; /* Добавляем курсор для кликабельности */
+}
+
+.note:hover {
+    background-color: #e9e9e9;
+}
+
+.note p {
+    margin: 0;
+    font-size: 16px;
+}
+
+/* Стиль для зачеркнутого текста */
+.note p.completed {
+    text-decoration: line-through;
+    color: #888; /* Серый цвет для завершенных заметок */
+}
+
+/* Стили для чекбокса и иконки корзины */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Расстояние между чекбоксом и иконкой корзины */
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #0088cc; /* Цвет чекбокса в стиле Telegram */
+}
+
+.delete-icon {
+    cursor: pointer;
+    font-size: 20px;
+    color: #ff4d4d; /* Красный цвет для иконки корзины */
+}
+
+.delete-icon:hover {
+    color: #cc0000; /* Темно-красный цвет при наведении */
+}
+
+/* Анимация для изменения статуса */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.note {
+    animation: fadeIn 0.5s ease;
+}
+
+/* Стили для модального окна */
+.modal {
+    display: none; /* Скрыто по умолчанию */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Полупрозрачный фон */
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+}
+
+.modal-content .close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    margin-top: 0;
+    color: #0088cc;
+}
+
+.modal-content p {
+    margin: 10px 0;
+}
+
+.edit-description {
+    margin-top: 20px;
+}
+
+.edit-description textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    resize: vertical; /* Разрешаем вертикальное изменение размера */
+}
+
+.edit-description button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0088cc;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.edit-description button:hover {
+    background-color: #0077b3;
+}
+
+#edit-icon {
+    cursor: pointer;
+    font-size: 20px;
+    margin-bottom: 10px;
+    display: inline-block;
+}

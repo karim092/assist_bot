@@ -1,0 +1,188 @@
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profile-header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%; /* Делаем фото круглым */
+    object-fit: cover; /* Чтобы фото не искажалось */
+    border: 2px solid #0088cc; /* Рамка вокруг фото */
+}
+
+h1 {
+    font-size: 24px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.profile-info, .profile-schedule {
+    font-size: 16px;
+}
+
+.profile-info p, .profile-schedule p {
+    margin-bottom: 15px;
+}
+
+.profile-info strong, .profile-schedule strong {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: #0088cc;
+    cursor: pointer; /* Курсор в виде указателя */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.schedule-content {
+    overflow: hidden;
+    transition: max-height 0.3s ease-out; /* Анимация раскрытия */
+}
+
+.schedule-content p {
+    margin-bottom: 10px;
+}
+
+.arrow {
+    font-size: 16px;
+    transition: transform 0.3s ease; /* Анимация стрелки */
+}
+
+/* Стили для кнопки "Записаться" */
+.tg-button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #0088cc;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.tg-button:hover {
+    background-color: #0077b3;
+}
+
+/* Стили для формы выбора услуг */
+.service-form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.form-group input[type="radio"] {
+    margin-right: 10px;
+}
+
+/* Стили для Flatpickr */
+#date-picker {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    background-color: #fff;
+    cursor: pointer;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.flatpickr-calendar {
+    font-family: inherit;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.flatpickr-day.selected {
+    background-color: #0088cc;
+    border-color: #0088cc;
+}
+
+.flatpickr-day.today {
+    border-color: #0088cc;
+}
+
+.flatpickr-day.today:hover {
+    background-color: #0088cc;
+    color: #fff;
+}
+
+/* Стили для Flatpickr */
+.flatpickr-calendar {
+    font-family: inherit;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.flatpickr-day.selected {
+    background-color: #0088cc;
+    border-color: #0088cc;
+}
+
+.flatpickr-day.today {
+    border-color: #0088cc;
+}
+
+.flatpickr-day.today:hover {
+    background-color: #0088cc;
+    color: #fff;
+}
+
+/* Стили для временных окон */
+.time-slot {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #0088cc;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.time-slot:hover {
+    background-color: #0077b3;
+}
+
+.time-slot:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

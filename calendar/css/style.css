@@ -1,0 +1,616 @@
+.executor-avatar {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+    display: block; /* Убедитесь, что аватарка отображается */
+}
+
+.toolbar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 110px; /* Высота тулбара */
+    background-image: url('icon/toolbar.svg'); /* Путь к вашему изображению */
+    background-size: cover; /* Растягиваем изображение на весь тулбар */
+    background-position: center; /* Центрируем изображение */
+    background-repeat: no-repeat; /* Убедитесь, что изображение не повторяется */
+    display: flex;
+    justify-content: space-around; /* Равномерное распределение кнопок */
+    align-items: center; /* Выравнивание по центру по вертикали */
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.2); /* Тень сверху */
+    z-index: 1000; /* Чтобы тулбар был поверх других элементов */
+}
+
+.calendar-table td.other-month {
+    color: #999; /* Серый цвет для чисел предыдущего и следующего месяца */
+    background-color: white; /* Светлый фон для чисел предыдущего и следующего месяца */
+    cursor: default; /* Курсор по умолчанию */
+}
+
+.calendar-table td.other-month:hover {
+    background-color: #f9f9f9; /* Оставляем фон без изменений при наведении */
+}
+
+.event-group {
+    display: none; /* Скрываем список по умолчанию */
+    position: absolute;
+    background-color: transparent; /* Прозрачный фон */
+    border-radius: 6px;
+    box-shadow: none; /* Убираем тень */
+    padding: 0; /* Убираем отступы */
+    z-index: 1000;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+    overflow: visible; /* Разрешаем событиям выходить за пределы списка */
+}
+
+.event-group.expanded {
+    display: block; /* Показываем список при раскрытии */
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.event-group .event-item {
+    margin-bottom: 10px; /* Отступ между событиями в списке */
+    background-color: #fff !important; /* Белый фон для событий в списке */
+    border: 1px solid #ddd; /* Граница для разделения событий */
+    padding: 10px; /* Отступы внутри событий */
+    border-radius: 4px; /* Закругленные углы */
+    position: absolute; /* Позиционируем события относительно группы */
+}
+
+.event-group .event-item:last-child {
+    margin-bottom: 0; /* Убираем отступ у последнего события */
+}
+
+.event-counter {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background-color: rgba(0, 0, 0, 0.7); /* Темный фон */
+    color: white; /* Белый текст */
+    border-radius: 50%; /* Делаем кнопку круглой */
+    width: 24px; /* Фиксированная ширина */
+    height: 24px; /* Фиксированная высота */
+    display: flex; /* Используем flex для центрирования текста */
+    align-items: center; /* Центрируем текст по вертикали */
+    justify-content: center; /* Центрируем текст по горизонтали */
+    font-size: 12px; /* Размер текста */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s ease; /* Плавное изменение фона при наведении */
+    border: none; /* Убираем границу */
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+.event-counter:hover {
+    background-color: rgba(0, 0, 0, 0.9); /* Темнее при наведении */
+}
+
+
+
+
+.no-events {
+    text-align: center; /* Центрируем текст по горизонтали */
+    margin-top: 20px; /* Отступ сверху */
+    margin-bottom: 20px; /* Отступ снизу */
+    font-size: 16px; /* Размер шрифта */
+    color: #555; /* Цвет текста */
+    position: relative;
+}
+
+.header-buttons {
+    display: flex; /* Горизонтальное расположение элементов */
+    gap: 10px; /* Расстояние между кнопками */
+}
+
+#prev-month,
+#next-month {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid #757575;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0; /* Убираем внутренние отступы */
+}
+
+#prev-month:hover,
+#next-month:hover {
+    background-color: rgba(117, 117, 117, 0.1);
+    border-color: #555;
+}
+
+#prev-month img,
+#next-month img {
+    width: 24px;
+    height: 24px;
+}
+
+/* Убедитесь, что эти стили не применяются к SVG */
+svg {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+.calendar .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 0 10px; /* Добавляем отступы по бокам */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    width: 100%; /* Занимаем всю ширину контейнера */
+    gap: 10px; /* Отступ между кнопками */
+}
+
+.calendar .header span {
+    text-transform: capitalize; /* Первая буква заглавная */
+}
+
+#editEvent {
+    position: absolute; /* Абсолютное позиционирование */
+    top: -35px; /* Смещение вверх на 35px */
+    left: 50%; /* Центрирование по горизонтали */
+    transform: translateX(-50%); /* Точное центрирование */
+    box-shadow: 0 0 1px rgba(0, 0, 0, 0.2); /* Небольшая тень вокруг кнопки */
+    z-index: 1; /* Убедитесь, что кнопка поверх других элементов */
+    border-radius: 50%; /* Делаем элемент круглым */
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+#button {
+    transform: translateY(-50px) !important; /* Смещаем кнопку вверх на 50px */
+    margin-bottom: 50;
+}
+
+.events-slider h2 {
+    font: SF Pro;
+    position: absolute; /* Абсолютное позиционирование */
+    font-size: 16px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    padding-bottom: 10px; /* Вместо margin-bottom */
+    transform: translateX(-50%); /* Смещаем элемент на половину своей ширины влево для точного центрирования */
+    left: 50%; /* Центрируем по горизонтали */
+}
+
+p {
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.time-slot {
+    height: 70px;
+    line-height: 70px;
+    color: #737373;
+    font-size: 14px;
+    margin-left: 0 !important;
+}
+
+.time-line {
+    margin-top: -35px;
+    position: absolute;
+    left: 70px;
+    right: 20px;
+    height: 1px;
+    background-color: #ccc;
+    z-index: -1;
+}
+
+.menu-icon {
+    position: absolute;
+    margin-top: 80px;
+    left: 20px; /* Отступ слева */
+    cursor: pointer;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: white;
+    color: black;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    position: relative; /* Делаем контейнер относительным */
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 400px; /* Фиксированная ширина */
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    box-sizing: border-box; /* Учитываем padding в ширине */
+}
+
+.calendar {
+    width: 100%;
+}
+
+
+
+.calendar .header span {
+    font-size: 18px; /* Размер шрифта для месяца и года */
+    font-weight: bold; /* Жирный шрифт */
+}
+
+
+
+
+
+
+
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar-table th,
+.calendar-table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+}
+
+.calendar-table th {
+    background-color: #f9f9f9;;
+    font-weight: bold;
+    
+}
+
+.calendar-table td {
+    position: relative; /* Для позиционирования точек */
+    text-align: center;
+    vertical-align: middle; /* Выравнивание текста по центру */
+    padding: 10px; /* Отступы внутри ячейки */
+}
+
+
+
+
+.calendar-table td .cell-content {
+    position: relative;
+    z-index: 1; /* Текст поверх точек */
+}
+
+.calendar-table td .event-mask {
+    position: absolute;
+    bottom: 3px; /* Точки внизу ячейки */
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center; /* Центрируем содержимое по горизонтали */
+    pointer-events: none; /* Чтобы маска не блокировала клики */
+    z-index: 100;
+}
+
+/* Если только одно событие, центрируем точку */
+.calendar-table td.has-events:not(.family-event) .event-mask,
+.calendar-table td.family-event:not(.has-events) .event-mask {
+    gap: 0; /* Убираем отступ между точками */
+    margin-left: 6px;
+}
+
+.calendar-table td .event-mask::before,
+.calendar-table td .event-mask::after {
+    content: '';
+    display: block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+/* Стили для личных событий */
+.calendar-table td.has-events .event-mask::before {
+    background-color: #FFCF40; /* Синий цвет для личных событий */
+}
+
+/* Стили для семейных событий */
+.calendar-table td.family-event .event-mask::after {
+    background-color: #dc3545; /* Красный цвет для семейных событий */
+}
+
+/* Если есть оба события, отображаем обе точки */
+.calendar-table td.has-events.family-event .event-mask::before,
+.calendar-table td.has-events.family-event .event-mask::after {
+    display: block;
+    margin: 0 2px; /* Отступ между точками */
+}
+
+.calendar-table td:hover {
+    background-color: #f1f1f1;
+}
+
+.calendar-table .empty {
+    background-color: #f9f9f9;
+    cursor: default;
+}
+
+.calendar-table .today {
+    background-color: transparent; /* Убираем фон у ячейки */
+    color: black; /* Белый цвет текста */
+    font-weight: bold;
+    position: relative; /* Для позиционирования текста */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20px; /* Высота ячейки (можно настроить под ваш дизайн) */
+    font-size: 16px !important; /* Крупный шрифт для заголовка */
+}
+
+/* Остальные стили для модальных окон, событий и т.д. */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+#description-edit {
+    margin-top: 10px;
+}
+
+#save-description {
+    margin-top: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#save-description:hover {
+    background-color: #0056b3;
+}
+
+.events-list ul {
+    list-style-type: none; /* Убираем маркеры списка */
+    padding: 0;
+    margin: 0;
+}
+
+#delete-event {
+    margin-top: 10px;
+    background-color: #dc3545; /* Красный цвет */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#delete-event:hover {
+    background-color: #c82333; /* Темнее красный при наведении */
+}
+
+/* Стили для выезжающего меню */
+.side-menu {
+    position: fixed;
+    top: 0;
+    right: -300px; /* Меню скрыто за пределами экрана */
+    width: 250px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease;
+    z-index: 999; /* Меню ниже кнопки */
+    padding: 20px;
+}
+
+.side-menu.open {
+    right: 0; /* Меню выезжает на экран */
+}
+
+/* Стили для кнопок меню */
+.menu-button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #007aff;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: left;
+    transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+    background-color: #005bb5;
+}
+
+.slider-handle {
+    position: sticky; /* Изменено на sticky */
+    top: 10px; /* Располагаем над окном */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background-color: #ddd;
+    border-radius: 2px;
+    cursor: pointer;
+    z-index: 1001; /* Убедитесь, что кнопка поверх других элементов */
+}
+
+#events-slider {
+    position: fixed;
+    bottom: -100%; /* Окно скрыто по умолчанию */
+    left: 0px;
+    width: 100%;
+    height: 50%; /* Высота окна */
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.3s ease; /* Плавное появление и скрытие */
+    z-index: 1000;
+    display: flex; /* Flex для разделения шкалы времени и событий */
+    overflow-y: auto; /* Прокрутка, если контент не помещается */
+    scrollbar-width: none; /* Скрываем скроллбар в Firefox */
+    -ms-overflow-style: none; /* Скрываем скроллбар в IE и Edge */
+}
+
+/* Скрываем скроллбар в Chrome, Safari и Opera */
+.events-slider::-webkit-scrollbar {
+    display: none;
+}
+
+.time-scale {
+    width: 20px !important; /* Уменьшаем ширину временной шкалы */
+    padding: 10px 0 !important; /* Убираем горизонтальные отступы, оставляем только вертикальные */
+
+
+    margin-left: -30px !important; /* Убираем отступ слева */
+}
+
+.events-list {
+    flex: 1; /* Занимает оставшееся пространство */
+    padding: 10px;
+    position: relative; /* Для абсолютного позиционирования событий */
+    height: 1440px; /* 24 часа * 60px на каждый час */
+}
+
+.event-item {
+    margin-left: 20px;
+    position: absolute; /* Абсолютное позиционирование */
+    left: 20px; /* Уменьшаем отступ слева (ближе к шкале времени) */
+    width: 140px; /* Фиксированная ширина для событий */
+    min-height: 60px; /* Минимальная высота для события */
+    background-color: #C8D4FD !important; /* Цвет фона события */
+    color: black; /* Цвет текста */
+    border-radius: 6px; /* Закругленные углы */
+    padding: 5px 10px; /* Отступы внутри события */
+    box-sizing: border-box; /* Учитываем padding в размерах */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s ease; /* Плавное изменение фона при наведении */
+    display: flex; /* Используем flex для выравнивания текста */
+    text-align: left; /* Выравниваем текст по левому краю */
+    overflow: hidden; /* Скрываем текст, который не помещается */
+    white-space: normal; /* Разрешаем перенос текста на новую строку */
+    word-wrap: break-word; /* Переносим длинные слова на новую строку */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* Тень для разделения событий */
+    flex-direction: column;
+}
+
+/* Линия слева */
+.event-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 7px; /* Ширина линии */
+    background-color: #4872FA; /* Прозрачный темный оттенок */
+    border-top-left-radius: 4px; /* Закругление верхнего левого угла */
+    border-bottom-left-radius: 4px; /* Закругление нижнего левого угла */
+}
+
+.event-item:hover {
+    background-color: #005bb5; /* Изменение фона при наведении */
+}
+
+.event-item.family-event::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 7px; /* Ширина линии */
+    background-color: #34C759; /* Прозрачный темный оттенок */
+    border-top-left-radius: 4px; /* Закругление верхнего левого угла */
+    border-bottom-left-radius: 4px; /* Закругление нижнего левого угла */
+}
+
+.event-item.family-event {
+    background-color: #C2EECD !important; /* Зеленый цвет для семейных событий */
+}
+
+.event-item.family-event:hover {
+    background-color: #218838; /* Темнее зеленый при наведении */
+}
+
+.event-item.family-event .event-title {
+    color: #34C759 !important;
+    font-size: 14px !important; /* Крупный шрифт для заголовка */
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom: 3px; /* Небольшой промежуток */
+}
+
+.event-title {
+    color: #4872FA;
+    font-size: 14px !important; /* Крупный шрифт для заголовка */
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom: 3px; /* Небольшой промежуток */
+}
+
+.event-description {
+    font-size: 12px; /* Меньший шрифт для описания */
+    color: #555; /* Серый цвет для описания */
+    margin-bottom: 3px; /* Небольшой промежуток */
+}
+
+.event-duration {
+    font-size: 12px; /* Меньший шрифт для длительности */
+    color: #777; /* Серый цвет для длительности */
+}
+
+
+
+.toolbar-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-button svg {
+    width: 48px; /* Размер иконок */
+    height: 48px;
+    fill: #007bff; /* Синий цвет иконок */
+    transition: fill 0.3s ease; /* Плавное изменение цвета */
+}
+
+.toolbar-button:hover svg {
+    fill: #0056b3; /* Темно-синий цвет при наведении */
+}

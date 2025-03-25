@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Профиль бизнеса</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем стили -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Блок с фото и именем -->
+        <div class="profile-header">
+            <img id="profile-photo" src="" alt="Фото профиля" class="profile-photo">
+            <h1 id="profile-name">Загрузка...</h1>
+        </div>
+
+        <!-- Блок с информацией о бизнесе -->
+        <div class="profile-info">
+            <p><strong>Категория:</strong> <span id="category">Загрузка...</span></p>
+            <p><strong>Информация:</strong> <span id="info">Загрузка...</span></p>
+            <p><strong>Адрес:</strong> <span id="address">Загрузка...</span></p>
+        </div>
+
+        <!-- Блок с режимом работы (аккордеон) -->
+        <div class="profile-schedule">
+            <h2 class="schedule-toggle">Режим работы <span class="arrow">▼</span></h2>
+            <div class="schedule-content" style="display: none;">
+                <p><strong>Понедельник:</strong> <span id="monday">Загрузка...</span></p>
+                <p><strong>Вторник:</strong> <span id="tuesday">Загрузка...</span></p>
+                <p><strong>Среда:</strong> <span id="wednesday">Загрузка...</span></p>
+                <p><strong>Четверг:</strong> <span id="thursday">Загрузка...</span></p>
+                <p><strong>Пятница:</strong> <span id="friday">Загрузка...</span></p>
+                <p><strong>Суббота:</strong> <span id="saturday">Загрузка...</span></p>
+                <p><strong>Воскресенье:</strong> <span id="sunday">Загрузка...</span></p>
+            </div>
+        </div>
+        <button id="book-button" class="tg-button">Записаться</button>
+    </div>
+
+    <script type="module" src="business_profile.js"></script> <!-- Подключаем скрипт -->
+</body>
+</html>

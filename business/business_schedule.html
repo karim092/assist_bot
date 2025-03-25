@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Режим работы</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем стили -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Укажите режим работы</h1>
+        <form id="schedule-form">
+            <!-- Понедельник -->
+            <div class="form-group">
+                <label for="monday">Понедельник:</label>
+                <input type="time" id="monday-start" required> - <input type="time" id="monday-end" required>
+            </div>
+            <!-- Вторник -->
+            <div class="form-group">
+                <label for="tuesday">Вторник:</label>
+                <input type="time" id="tuesday-start" required> - <input type="time" id="tuesday-end" required>
+            </div>
+            <!-- Среда -->
+            <div class="form-group">
+                <label for="wednesday">Среда:</label>
+                <input type="time" id="wednesday-start" required> - <input type="time" id="wednesday-end" required>
+            </div>
+            <!-- Четверг -->
+            <div class="form-group">
+                <label for="thursday">Четверг:</label>
+                <input type="time" id="thursday-start" required> - <input type="time" id="thursday-end" required>
+            </div>
+            <!-- Пятница -->
+            <div class="form-group">
+                <label for="friday">Пятница:</label>
+                <input type="time" id="friday-start" required> - <input type="time" id="friday-end" required>
+            </div>
+            <!-- Суббота -->
+            <div class="form-group">
+                <label for="saturday">Суббота:</label>
+                <input type="time" id="saturday-start" required> - <input type="time" id="saturday-end" required>
+            </div>
+            <!-- Воскресенье -->
+            <div class="form-group">
+                <label for="sunday">Воскресенье:</label>
+                <input type="time" id="sunday-start" required> - <input type="time" id="sunday-end" required>
+            </div>
+            <button type="submit" class="tg-button">Сохранить</button>
+        </form>
+    </div>
+
+    <script type="module" src="business_schedule.js"></script> <!-- Подключаем скрипт -->
+</body>
+</html>

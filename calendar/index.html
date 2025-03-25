@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Календарь</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/event-modal.css">
+    <link rel="stylesheet" href="css/notes.css">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+</head>
+<body>
+    <div class="container">
+        <!-- Кнопка меню (три точки) -->
+        <div class="menu-icon" id="menu-icon">
+            <img src="icon/menu.svg" alt="Menu Icon" width="24" height="24">
+        </div>
+        
+        <div class="toolbar" id="toolbar">
+            <button class="toolbar-button" id="record">
+                <img src="icon/record.svg" alt="Menu Icon" width="90.25" height="38">
+            </button>
+            <button class="toolbar-button" id="editEvent">
+                <img src="icon/button.svg" alt="Menu Icon" width="60" height="60">
+            </button>
+             <button class="toolbar-button" id="notes-button">
+                <img src="icon/notes.svg" alt="Menu Icon" width="90.25" height="38">
+            </button>
+        </div>        
+        
+        <h1>Plana</h1>
+        <p>Mini App</p>
+        <div id="calendar"></div> <!-- Контейнер для календаря -->
+        <div id="time-selector"></div> <!-- Контейнер для селектора времени -->
+        
+    </div>
+    
+
+
+    <!-- Модальное окно для событий -->
+    <div id="event-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h3>Информация о событии</h3>
+            <p><strong>Начало:</strong> <span id="modal-start-time"></span></p>
+            <p><strong>Окончание:</strong> <span id="modal-end-time"></span></p>
+            <p><strong>Описание:</strong>
+            <span id="modal-description"></span>
+            <span id="edit-description" style="cursor: pointer; margin-left: 10px;">✏️</span></p>
+            <textarea id="description-edit" style="display: none; width: 100%; height: 100px;"></textarea>
+            <button id="save-description" style="display: none;">Сохранить</button>
+            <button id="delete-event" style="margin-top: 10px; background-color: #dc3545; color: white; border: none; padding: 10px 20px; cursor: pointer;">🗑️ Удалить событие</button>
+        </div>
+    </div>
+
+    <!-- Контейнер для модального окна -->
+    <div id="modal-container" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 1000;">
+        <!-- Сюда будет загружено содержимое event-modal.html -->
+    </div>
+
+    <!-- Выезжающее меню -->
+    <div class="side-menu" id="side-menu">
+        <button class="menu-button" id="family-button">Перейти в семейный</button>
+        <button class="menu-button" id="bussines-button">Перейти в бизнес</button>
+    </div>
+
+    <div class="events-slider" id="events-slider">
+        <div class="slider-handle"></div> <!-- Серая линия для закрытия -->
+            <h2>События на сегодня</h2>
+            <div class="time-scale">
+                <div class="time-slot">00:00</div>
+                <div class="time-slot">01:00</div>
+                <div class="time-slot">02:00</div>
+                <div class="time-slot">03:00</div>
+                <div class="time-slot">04:00</div>
+                <div class="time-slot">05:00</div>
+                <div class="time-slot">06:00</div>
+                <div class="time-slot">07:00</div>
+                <div class="time-slot">08:00</div>
+                <div class="time-slot">09:00</div>
+                <div class="time-slot">10:00</div>
+                <div class="time-slot">11:00</div>
+                <div class="time-slot">12:00</div>
+                <div class="time-slot">13:00</div>
+                <div class="time-slot">14:00</div>
+                <div class="time-slot">15:00</div>
+                <div class="time-slot">16:00</div>
+                <div class="time-slot">17:00</div>
+                <div class="time-slot">18:00</div>
+                <div class="time-slot">19:00</div>
+                <div class="time-slot">20:00</div>
+                <div class="time-slot">21:00</div>
+                <div class="time-slot">22:00</div>
+                <div class="time-slot">23:00</div>
+            </div>
+            <div class="events-list" id="time">
+        </div> <!-- Контейнер для событий -->
+    </div>
+
+    <!-- Второе выезжающее окно -->
+    <div class="slider-menu" id="formSliderMenu">
+        <!-- Ручка для второго выезжающего окна -->
+        <div class="slider-handle" id="formSliderHandle"></div>
+        <div class="slider-content">
+            <form id="add-event-form">
+                <div class="form-group">
+                    <input type="text" id="event-title" name="title" placeholder="Название" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="event-description" name="description" placeholder="Описание"></textarea>
+                </div>
+                <div class="form-group date-info">
+                    <img src="icon/calendar.svg" alt="Date" width="18" height="18">
+                    <input type="date" id="event-date" name="date" placeholder="Дата" required>
+                </div>
+                <div class="form-group time-info">
+                    <img src="icon/clock.svg" alt="Date" width="18" height="18">
+                    <input type="time" id="event-start-time" name="startTime" placeholder="Начало" required>
+                    <img src="icon/arrow.svg" alt="Date" width="24" height="24">
+                    <input type="time" id="event-end-time" name="endTime" placeholder="Конец" required>
+                </div>
+                <div class="form-group executor-info">
+                    <img src="icon/executer.svg" alt="Executor" width="18" height="18">
+                    <select id="event-executor" name="executor" required>
+                        <option value="" disabled selected>Исполнитель</option>
+                    </select>
+                </div>              
+                <div class="form-group">
+                    <label for="is-family-event">Семейное событие:</label>
+                    <input type="checkbox" id="is-family-event" name="isFamilyEvent">
+                </div>
+                <button type="submit">Добавить событие</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Оверлей для затемнения фона -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- Выезжающее окно снизу notes-->
+    <div id="bottom-sheet" class="bottom-sheet">
+        <div class="close-sheet" id="close-sheet"></div>
+        <h3>События на сегодня</h3>
+        <div id="sheet-content">
+            <!-- Контент будет загружен сюда -->
+        </div>
+    </div>
+
+    <!-- Модальное окно для подробной информации -->
+    <div id="note-modal" class="modal">
+        <div class="modal-content-notes">
+            <span class="close-notes">&times;</span>
+            <h2 id="modal-title-notes">Заметка</h2>
+            <p id="modal-description">Описание заметки...</p>
+            <div class="edit-description-notes">
+                <span id="edit-icon-notes">✏️</span> <!-- Иконка карандаша -->
+                <textarea id="description-edit-notes" placeholder="Введите новое описание..."></textarea>
+                <button id="save-description-notes">Сохранить</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Объявляем глобальную переменную
+        const webAppUrl = "https://assistbottg.ru/telegram-mini-app.v1.1.2.3/main_page/calendar";
+    </script>
+
+    <script type="module" src="js/main.js"></script>
+    <script type="module" src="js/firebase.js"></script>
+    <script type="module" src="js/calendarService.js"></script>
+    <script type="module" src="js/calendarUI.js"></script>
+    <script type="module" src="js/familyCalendarService.js"></script>
+    <script type="module" src="js/event-modal.js"></script>
+    
+    <script type="module" src="notes/script.js"></script> <!-- Новый скрипт для меню -->
+    <script type="module" src="notes/info-notes.js"></script> <!-- Новый скрипт для меню -->    
+    <script type="module" src="js/menu.js"></script> <!-- Новый скрипт для меню -->
+
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виды услуг</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем стили -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Укажите виды услуг и их стоимость</h1>
+        <form id="services-form">
+            <!-- Контейнер для динамически добавляемых услуг -->
+            <div id="services-container">
+                <!-- Услуга 1 -->
+                <div class="form-group service-item">
+                    <label for="service1">Услуга 1:</label>
+                    <input type="text" id="service1" placeholder="Название услуги" required>
+                    <input type="number" id="price1" placeholder="Стоимость" required>
+                    <label for="duration1">Продолжительность:</label>
+                    <input type="time" id="duration1" required>
+                </div>
+            </div>
+
+            <!-- Поле для интервала между услугами -->
+            <div class="form-group">
+                <label for="interval-between-services">Интервал между услугами (в минутах):</label>
+                <input type="number" id="interval-between-services" placeholder="Например, 15">
+            </div>
+
+            <!-- Поля для перерыва -->
+            <div class="form-group">
+                <label>Перерыв:</label>
+                <input type="time" id="break-start" placeholder="Начало перерыва">
+                <input type="time" id="break-end" placeholder="Конец перерыва">
+            </div>
+
+            <!-- Кнопка для добавления новой услуги -->
+            <button type="button" id="add-service" class="tg-button">+ Добавить услугу</button>
+
+            <!-- Кнопка для сохранения и перехода далее -->
+            <button type="submit" class="tg-button">Далее</button>
+        </form>
+    </div>
+
+    <script type="module" src="business_services.js"></script> <!-- Подключаем скрипт -->
+</body>
+</html>

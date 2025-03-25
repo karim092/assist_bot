@@ -1,0 +1,248 @@
+/* Стили для группы "Исполнитель" */
+.executor-info {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Отступ между иконкой и выпадающим списком */
+}
+
+/* Стили для выпадающего списка */
+#event-executor {
+    width: 100%; /* Занимает всю доступную ширину, как поле "Название" */
+    height: 40px; /* Высота, как у поля "Название" */
+    padding: 10px; /* Внутренние отступы, как у поля "Название" */
+    border: 1px solid #ddd; /* Граница, как у поля "Название" */
+    border-radius: 8px; /* Закругленные углы, как у поля "Название" */
+    font-size: 14px; /* Размер шрифта, как у поля "Название" */
+    outline: none; /* Убираем обводку при фокусе */
+    background-color: white; /* Цвет фона, как у поля "Название" */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+#event-description {
+    height: 50px; /* Высота текстового поля */
+    resize: vertical; /* Разрешаем изменение высоты */
+}
+
+/* Стили для иконки */
+.executor-info img {
+    width: 18px;
+    height: 18px;
+}
+
+
+/* Стили для slider-menu */
+.slider-menu {
+    width: 100%;
+    padding: 0 20px;
+    box-sizing: border-box;
+    position: fixed; /* Фиксируем окно */
+    bottom: 0; /* Изначально прикрепляем к низу */
+    left: 0;
+    background: white; /* Фон окна */
+    z-index: 1000; /* Убедимся, что окно поверх других элементов */
+    transition: transform 0.3s ease; /* Плавное перемещение */
+    margin: 0;
+}
+
+
+/* Убираем скроллбар */
+#formSliderMenu {
+    overflow: hidden; /* Скрываем скроллбар */
+}
+
+/* Для браузеров на основе WebKit (Chrome, Safari) */
+#formSliderMenu::-webkit-scrollbar {
+    display: none; /* Скрываем скроллбар */
+}
+
+/* Стили для выезжающего окна */
+#formSliderMenu {
+    position: fixed;
+    bottom: -100%; /* Окно скрыто по умолчанию */
+    left: 0;
+    width: 100%;
+    height: 80%; /* Высота окна */
+    background-color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.1);
+    transition: bottom 0.3s ease; /* Плавное появление и скрытие */
+    z-index: 1000;
+    overflow-y: auto; /* Прокрутка, если контент не помещается */
+    padding: 20px; /* Внутренние отступы */
+    box-sizing: border-box; /* Учитываем padding в общей высоте */
+}
+
+/* Класс для открытого состояния окна */
+#formSliderMenu.open {
+    bottom: 0; /* Окно выезжает на экран */
+}
+
+/* Стили для контейнера содержимого */
+.slider-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Центрируем по горизонтали */
+
+    height: 100%; /* Занимает всю высоту окна */
+    margin: 0; /* Центрируем контейнер */
+    width: 100%; /* Занимает всю ширину slider-menu */
+    max-width: 100%; /* Ограничиваем максимальную ширину */
+    margin-left: 0 !important; /* Убираем отступ слева */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    gap: 15px; /* Отступы между элементами формы */
+}
+
+/* Стили для заголовка */
+.slider-content h3 {
+    font-size: 24px; /* Размер шрифта */
+    font-weight: bold; /* Жирный шрифт */
+    margin-bottom: 20px; /* Отступ снизу */
+    color: #333; /* Цвет текста */
+}
+
+/* Стили для формы */
+#add-event-form {
+    width: 100%; /* Форма занимает всю ширину контейнера */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Отступы между элементами формы */
+}
+
+/* Стили для групп формы */
+.form-group {
+    margin-bottom: 15px; /* Отступ между группами */
+    width: 100%; /* Группа занимает всю ширину */
+}
+
+/* Стили для input и textarea */
+#add-event-form input,
+#add-event-form textarea {
+    width: 100%; /* Элементы занимают всю ширину */
+    padding: 10px; /* Внутренние отступы */
+    border: 1px solid #ddd; /* Граница */
+    border-radius: 8px; /* Закруглённые углы */
+    font-size: 14px; /* Размер шрифта */
+    outline: none; /* Убираем обводку при фокусе */
+    transition: border-color 0.3s ease; /* Плавное изменение цвета границы */
+}
+
+#add-event-form input:focus,
+#add-event-form textarea:focus {
+    border-color: #007bff; /* Цвет границы при фокусе */
+}
+
+/* Стили для текстового поля */
+#add-event-form textarea {
+    resize: vertical; /* Разрешаем вертикальное изменение размера */
+    min-height: 100px; /* Минимальная высота */
+}
+
+/* Стили для чекбокса */
+#add-event-form .form-group label {
+    font-size: 14px; /* Размер шрифта */
+    color: #555; /* Цвет текста */
+    margin-right: 10px; /* Отступ справа */
+}
+
+#add-event-form .form-group input[type="checkbox"] {
+    width: auto; /* Ширина по содержимому */
+    margin-left: 10px; /* Отступ слева */
+}
+
+/* Стили для кнопки отправки */
+#add-event-form button {
+    width: 100%; /* Кнопка занимает всю ширину */
+    padding: 10px 20px; /* Внутренние отступы */
+    background-color: #007bff; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границу */
+    border-radius: 8px; /* Закруглённые углы */
+    font-size: 16px; /* Размер шрифта */
+    cursor: pointer; /* Курсор в виде указателя */
+    transition: background-color 0.3s ease; /* Плавное изменение цвета фона */
+}
+
+#add-event-form button:hover {
+    background-color: #0056b3; /* Цвет фона при наведении */
+}
+
+/* Стили для ручки */
+#formSliderHandle {
+    position: sticky; /* Изменено на sticky */
+    top: 5px; /* Располагаем над окном */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 4px;
+    background-color: #ddd;
+    border-radius: 2px;
+    cursor: pointer;
+    z-index: 1001; /* Убедитесь, что кнопка поверх других элементов */
+    margin-bottom: 20px;
+}
+
+.time-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.date-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Стили для input и textarea */
+input[type="text"],
+input[type="date"],
+input[type="time"],
+textarea {
+    width: 100%; /* Элементы занимают всю ширину родителя */
+    padding: 10px; /* Внутренние отступы для удобства */
+    box-sizing: border-box; /* Учитываем padding в ширине */
+    font-size: 16px; /* Увеличиваем размер шрифта для удобства на мобильных устройствах */
+}
+
+/* Стили для кнопки */
+button[type="submit"] {
+    width: 100%; /* Кнопка занимает всю ширину */
+    padding: 10px; /* Внутренние отступы */
+    background-color: #007bff; /* Цвет фона */
+    color: white; /* Цвет текста */
+    border: none; /* Убираем границу */
+    cursor: pointer; /* Курсор в виде указателя */
+}
+
+/* Стили для чекбокса */
+input[type="checkbox"] {
+    margin-left: 10px; /* Отступ слева от чекбокса */
+}
+
+@media (max-width: 600px) {
+    .slider-menu {
+        padding: 0 10px; /* Уменьшаем отступы */
+    }
+
+    #add-event-form {
+        gap: 10px; /* Уменьшаем отступы между элементами */
+    }
+
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    textarea {
+        padding: 8px; /* Уменьшаем внутренние отступы */
+        font-size: 14px; /* Уменьшаем размер шрифта */
+    }
+
+    button[type="submit"] {
+        padding: 8px; /* Уменьшаем отступы кнопки */
+    }
+
+    .slider-content {
+        max-height: 70vh; /* Ограничиваем высоту контента */
+        overflow-y: auto; /* Добавляем прокрутку */
+    }
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Выбор даты</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Подключаем стили -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"> <!-- Подключаем стили Flatpickr -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Выберите дату</h1>
+        <form id="date-form">
+            <div class="form-group">
+                <label for="date-picker">Дата:</label>
+                <input type="text" id="date-picker" placeholder="Выберите дату" readonly>
+            </div>
+            <button type="submit" class="tg-button">Далее</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script> <!-- Подключаем Flatpickr -->
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ru.js"></script> <!-- Локализация на русский -->
+    <script type="module" src="choose_date.js"></script> <!-- Подключаем скрипт -->
+</body>
+</html>
